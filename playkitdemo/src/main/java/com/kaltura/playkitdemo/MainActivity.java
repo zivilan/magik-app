@@ -41,6 +41,12 @@ public class MainActivity extends AbsPlayKitAppActivity implements RootMenuFragm
         Intent intent = getIntent();
         mConverterPlayKitApp = intent.getParcelableExtra(SplashActivity.CONVERTER_PLAY_KIT_APP);
 
+        setFragments();
+    }
+
+
+    private void setFragments() {
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (findViewById(player_fragment) != null) { // tablet

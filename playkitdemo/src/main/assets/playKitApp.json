@@ -1,0 +1,100 @@
+{
+"playKitApp": [
+    {
+      "rootMenuTitle": "Playback Options",
+      "subMenu": [
+        {
+          "subMenuTitle": "DRM",
+          "featureVariants": [
+            {
+              "featureTitle": "DRM",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+            }
+          ],
+          "aboutFeature": "long text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text"
+        },
+        {
+          "subMenuTitle": "Live",
+          "featureVariants": [
+            {
+              "featureTitle": "Live with DVR",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+            },
+            {
+              "featureTitle": "Live without DVR",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+            }
+          ],
+          "aboutFeature": "text text text\ntext text"
+        },
+        {
+          "subMenuTitle": "Offline",
+          "featureVariants": [
+            {
+              "featureTitle": "Offline",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+            }
+          ],
+          "aboutFeature": "text text text\ntext text",
+          "featureId":"FEATURE_OFFLINE"
+        }
+      ]
+    },
+    {
+      "rootMenuTitle": "Monetization",
+      "subMenu": [  {
+          "subMenuTitle": "Pre-rolls",
+          "featureVariants": [
+            {
+              "featureTitle": "Pre-rolls",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+            }
+          ],
+          "aboutFeature": "text text text\ntext text"
+        },
+        {
+          "subMenuTitle": "Companion ad",
+          "featureVariants": [
+            {
+              "featureTitle": "Companion ad",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+            }
+          ],
+          "aboutFeature": "text text text\ntext text",
+          "featureId":"FEATURE_MONETIZATION_COMPANION_AD"
+        }
+        ]
+    },
+    {
+      "rootMenuTitle": "Cast",
+      "subMenu": [
+        {
+          "subMenuTitle": "Cast",
+          "featureVariants": [
+            {
+              "featureTitle": "Cast",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+            }
+          ],
+          "aboutFeature": "text text text\ntext text"
+        }
+      ]
+    },
+    {
+      "rootMenuTitle": "Analytics",
+      "subMenu": [{
+          "subMenuTitle": "Analytics",
+          "featureVariants": [
+            {
+              "featureTitle": "Analytics",
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+            }
+          ],
+          "aboutFeature": "text text text\ntext text",
+          "featureId":"FEATURE_ANALYTICS_LOGS"
+        }
+        ]
+
+    }
+  ]
+}

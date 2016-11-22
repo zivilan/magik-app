@@ -61,7 +61,7 @@ public class StandalonePlayerActivity extends AppCompatActivity {
                 }
             });
 
-        } else { // app invocation done by the standard way
+        } else { // app invocation done by clicking the app icon from device home screen
 
             MediaEntryProvider mediaEntryProvider = new PhoenixMediaProvider(sessionProvider, MediaId3, MockParams.MediaType, Format);
 
