@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,12 +20,14 @@ class SubMenuRecyclerAdapter extends RecyclerView.Adapter<SubMenuRecyclerAdapter
     private MenuRecyclerAdapter.MenuClickListener mClickListener;
     private int mLayoutId;
 
+    private int mSelectedItem;
 
 
     SubMenuRecyclerAdapter(ArrayList<String> myDataSet, MenuRecyclerAdapter.MenuClickListener clickListener, int layoutId) {
         mDataSet = myDataSet;
         mClickListener = clickListener;
         mLayoutId = layoutId;
+        mSelectedItem = 0; // the behaviour is to play the first player variant as the default
     }
 
     @Override
@@ -39,6 +42,7 @@ class SubMenuRecyclerAdapter extends RecyclerView.Adapter<SubMenuRecyclerAdapter
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
         holder.subMenuTitle.setText(mDataSet.get(position));
+        holder.radioButton.setChecked(position == mSelectedItem);
     }
 
 
@@ -54,19 +58,24 @@ class SubMenuRecyclerAdapter extends RecyclerView.Adapter<SubMenuRecyclerAdapter
 
         Context context;
         TextView subMenuTitle;
+        RadioButton radioButton;
 
 
         DataObjectHolder(View itemView) {
 
             super(itemView);
 
-            subMenuTitle = (TextView) itemView.findViewById(R.id.sub_menu_title);
             context = itemView.getContext();
+            subMenuTitle = (TextView) itemView.findViewById(R.id.sub_menu_title);
+            radioButton = (RadioButton) itemView.findViewById(R.id.sub_menu_radio);
             itemView.setOnClickListener(this);
+            radioButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            mSelectedItem = getAdapterPosition();
+            notifyItemRangeChanged(0, mDataSet.size());
             mClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
