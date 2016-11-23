@@ -8,7 +8,7 @@
           "featureVariants": [
             {
               "featureTitle": "DRM",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer.json"
             }
           ],
           "aboutFeature": "long text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text\nlong text long text long text"
@@ -18,11 +18,11 @@
           "featureVariants": [
             {
               "featureTitle": "Live with DVR",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer.json"
             },
             {
               "featureTitle": "Live without DVR",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer_v2.json"
             }
           ],
           "aboutFeature": "text text text\ntext text"
@@ -32,7 +32,7 @@
           "featureVariants": [
             {
               "featureTitle": "Offline",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer.json"
             }
           ],
           "aboutFeature": "text text text\ntext text",
@@ -47,7 +47,7 @@
         "featureVariants": [
           {
             "featureTitle": "Pre-rolls",
-            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer.json"
           }
         ],
         "aboutFeature": "text text text\ntext text"
@@ -57,7 +57,7 @@
           "featureVariants": [
             {
               "featureTitle": "Companion ad",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer.json"
             }
           ],
           "aboutFeature": "text text text\ntext text",
@@ -73,7 +73,7 @@
           "featureVariants": [
             {
               "featureTitle": "Cast",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer.json"
             }
           ],
           "aboutFeature": "text text text\ntext text"
@@ -86,16 +86,16 @@
         "subMenuTitle": "Analytics",
         "featureVariants": [
           {
-            "featureTitle": "Live Analytics",
-            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+            "featureTitle": "Analytics",
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer_v2.json"
           },
           {
             "featureTitle": "Youbora",
-            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer.json"
           },
           {
-            "featureTitle": "Kaltura Analytics",
-            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+            "featureTitle": "Kaltura Live Analytics",
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer/standalonePlayer_v2.json"
           }
         ],
         "aboutFeature": "text text text\ntext text",

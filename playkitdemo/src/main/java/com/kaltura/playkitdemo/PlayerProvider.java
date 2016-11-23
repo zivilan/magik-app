@@ -191,6 +191,7 @@ public class PlayerProvider {
     private static void onMediaLoaded(PKMediaEntry mediaEntry, ConverterPlayerConfig converterPlayerConfig,
                                       OnPlayerReadyListener onPlayerReadyListener, Activity context) {
 
+
         PlayerConfig config = new PlayerConfig();
 
         configureMedia(config.media, mediaEntry, converterPlayerConfig != null ? converterPlayerConfig.getMedia() : null);
@@ -249,9 +250,9 @@ public class PlayerProvider {
         player.addEventListener(new PKEvent.Listener() {
             @Override
             public void onEvent(PKEvent event) {
-                Log.v(MainActivity.TAG, "" + event.eventId());
+                Log.v(MainActivity.TAG, "" + event.eventType());
             }
-        }, PlayerEvent.PLAYING, PlayerEvent.PAUSE, PlayerEvent.CAN_PLAY, PlayerEvent.SEEKING, PlayerEvent.SEEKED);
+        }, PlayerEvent.Type.PLAY, PlayerEvent.Type.PAUSE, PlayerEvent.Type.CAN_PLAY, PlayerEvent.Type.SEEKING, PlayerEvent.Type.SEEKED);
 
 
 
