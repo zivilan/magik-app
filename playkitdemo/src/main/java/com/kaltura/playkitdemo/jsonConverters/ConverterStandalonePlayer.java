@@ -1,6 +1,7 @@
 package com.kaltura.playkitdemo.jsonConverters;
 
-import com.google.gson.annotations.Expose;
+import com.kaltura.playkitdemo.jsonConverters.mediaEntryProviders.ConverterKalturaOvpMediaProvider;
+import com.kaltura.playkitdemo.jsonConverters.mediaEntryProviders.ConverterPhoenixMediaProvider;
 
 /**
  * Created by itanbarpeled on 18/11/2016.

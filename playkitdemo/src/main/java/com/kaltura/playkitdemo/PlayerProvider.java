@@ -1,6 +1,7 @@
 package com.kaltura.playkitdemo;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,9 +18,9 @@ import com.kaltura.playkit.backend.phoenix.PhoenixMediaProvider;
 import com.kaltura.playkit.connect.ResultElement;
 import com.kaltura.playkit.connect.SessionProvider;
 import com.kaltura.playkitdemo.data.JsonFetchTask;
-import com.kaltura.playkitdemo.jsonConverters.ConverterKalturaOvpMediaProvider;
+import com.kaltura.playkitdemo.jsonConverters.mediaEntryProviders.ConverterKalturaOvpMediaProvider;
 import com.kaltura.playkitdemo.jsonConverters.ConverterMedia;
-import com.kaltura.playkitdemo.jsonConverters.ConverterPhoenixMediaProvider;
+import com.kaltura.playkitdemo.jsonConverters.mediaEntryProviders.ConverterPhoenixMediaProvider;
 import com.kaltura.playkitdemo.jsonConverters.ConverterPlayerConfig;
 import com.kaltura.playkitdemo.jsonConverters.ConverterPlugins;
 import com.kaltura.playkitdemo.jsonConverters.ConverterSessionProvider;
@@ -65,6 +66,11 @@ public class PlayerProvider {
 
             @Override
             public void onJsonFetched(String json) {
+
+                if (TextUtils.isEmpty(json)) {
+                    onPlayerReadyListener.onPlayerReady(null);
+                    return;
+                }
 
                 JsonStandalonePlayer standalonePlayer = new Gson().fromJson(json, JsonStandalonePlayer.class);
                 ConverterStandalonePlayer converterStandalonePlayer = standalonePlayer.getStandalonePlayer();
@@ -170,7 +176,7 @@ public class PlayerProvider {
 
                         } else {
                             String error = "failed to fetch media data: " + (response.getError() != null ? response.getError().getMessage() : "");
-                            Toast.makeText(context, error, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(context, error, Toast.LENGTH_LONG).show();
                             Log.e(MainActivity.TAG, error);
                             onPlayerReadyListener.onPlayerReady(null);
                         }
@@ -228,7 +234,7 @@ public class PlayerProvider {
 
         /*
         try {
-            config.setPluginConfig("Sample", new JSONObject().put("delay", 4200));
+            plugins.setPluginConfig("Sample", new JSONObject().put("delay", 4200));
         } catch (JSONException e) {
             e.printStackTrace();
         }

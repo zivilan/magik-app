@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -88,13 +90,36 @@ public class PlayerFragment extends Fragment {
 
         View fragmentView = inflater.inflate(R.layout.fragment_player, container, false);
 
-        mFeatureTitleContainer = (RelativeLayout) fragmentView.findViewById(R.id.feature_title_container);
         mPlayerContainer = (LinearLayout) fragmentView.findViewById(R.id.player_container);
-        mFeatureTitle = (TextView) fragmentView.findViewById(R.id.feature_title);
-        mFeatureDescription = (TextView) fragmentView.findViewById(R.id.feature_description);
         mControlsView = (PlaybackControlsView) fragmentView.findViewById(R.id.playerControls);
-        mVerticalArrow = (ImageView) fragmentView.findViewById(R.id.vertical_arrow);
-        mRecyclerView = (RecyclerView) fragmentView.findViewById(R.id.recycler_view);
+
+        setCardsList(fragmentView);
+
+        return fragmentView;
+    }
+
+
+
+
+
+    protected void setCardsList(View fragmentView) {
+
+
+        //mConverterSubMenu.getFeatureId();
+
+
+        ViewStub stub = (ViewStub) fragmentView.findViewById(R.id.player_cards_list);
+        stub.setLayoutResource(R.layout.player_cards_list_default);
+        View view = stub.inflate();
+
+
+        mFeatureTitleContainer = (RelativeLayout) view.findViewById(R.id.feature_title_container);
+        mFeatureTitle = (TextView) view.findViewById(R.id.feature_title);
+        mFeatureDescription = (TextView) view.findViewById(R.id.feature_description);
+        mVerticalArrow = (ImageView) view.findViewById(R.id.vertical_arrow);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+
+
 
         mFeatureTitleContainer.setOnClickListener(new View.OnClickListener() {
 
@@ -108,9 +133,8 @@ public class PlayerFragment extends Fragment {
 
             }
         });
-
-        return fragmentView;
     }
+
 
 
     private void toggleVerticalArrow(boolean isCardExpanded) {
@@ -169,6 +193,12 @@ public class PlayerFragment extends Fragment {
         PlayerProvider.getPlayer(standalonePlayerUrl, getActivity(), new PlayerProvider.OnPlayerReadyListener() {
             @Override
             public void onPlayerReady(Player player) {
+
+                if (player == null) {
+                    showMessage(R.string.something_went_wrong);
+                    return;
+                }
+
                 releasePlayer();
                 mPlayer = player;
                 startPlay();
@@ -178,10 +208,6 @@ public class PlayerFragment extends Fragment {
 
 
     private void startPlay() {
-
-        if (mPlayer == null) {
-            return;
-        }
 
         mPlayerContainer.removeAllViews();
         mPlayerContainer.addView(mPlayer.getView());
@@ -259,6 +285,20 @@ public class PlayerFragment extends Fragment {
 
         return featureVariants;
     }
+
+
+
+    private void showMessage(int string) {
+
+        View view;
+
+        if ((view = getView()) != null) {
+            RelativeLayout itemView = (RelativeLayout) view.findViewById(R.id.feature_title_container);
+            Snackbar snackbar = Snackbar.make(itemView, string, Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+    }
+
 
 
     public interface OnFeatureVariantInteractionListener {

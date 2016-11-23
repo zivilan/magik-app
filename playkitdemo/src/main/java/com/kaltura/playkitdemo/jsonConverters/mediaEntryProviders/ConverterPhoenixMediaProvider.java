@@ -1,4 +1,6 @@
-package com.kaltura.playkitdemo.jsonConverters;
+package com.kaltura.playkitdemo.jsonConverters.mediaEntryProviders;
+
+import com.kaltura.playkitdemo.jsonConverters.ConverterSessionProvider;
 
 import java.util.List;
 

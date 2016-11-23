@@ -1,5 +1,5 @@
 {
-"playKitApp": [
+  "playKitApp": [
     {
       "rootMenuTitle": "Playback Options",
       "subMenu": [
@@ -43,15 +43,15 @@
     {
       "rootMenuTitle": "Monetization",
       "subMenu": [  {
-          "subMenuTitle": "Pre-rolls",
-          "featureVariants": [
-            {
-              "featureTitle": "Pre-rolls",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
-            }
-          ],
-          "aboutFeature": "text text text\ntext text"
-        },
+        "subMenuTitle": "Pre-rolls",
+        "featureVariants": [
+          {
+            "featureTitle": "Pre-rolls",
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer.json"
+          }
+        ],
+        "aboutFeature": "text text text\ntext text"
+      },
         {
           "subMenuTitle": "Companion ad",
           "featureVariants": [
@@ -63,7 +63,7 @@
           "aboutFeature": "text text text\ntext text",
           "featureId":"FEATURE_MONETIZATION_COMPANION_AD"
         }
-        ]
+      ]
     },
     {
       "rootMenuTitle": "Cast",
@@ -83,17 +83,25 @@
     {
       "rootMenuTitle": "Analytics",
       "subMenu": [{
-          "subMenuTitle": "Analytics",
-          "featureVariants": [
-            {
-              "featureTitle": "Analytics",
-              "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
-            }
-          ],
-          "aboutFeature": "text text text\ntext text",
-          "featureId":"FEATURE_ANALYTICS_LOGS"
-        }
-        ]
+        "subMenuTitle": "Analytics",
+        "featureVariants": [
+          {
+            "featureTitle": "Live Analytics",
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+          },
+          {
+            "featureTitle": "Youbora",
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+          },
+          {
+            "featureTitle": "Kaltura Analytics",
+            "playerConfigURL": "https://preprod-mediago.s3.amazonaws.com/standalonePlayer_v2.json"
+          }
+        ],
+        "aboutFeature": "text text text\ntext text",
+        "featureId":"FEATURE_ANALYTICS_LOGS"
+      }
+      ]
 
     }
   ]

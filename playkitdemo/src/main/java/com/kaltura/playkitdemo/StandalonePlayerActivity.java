@@ -2,7 +2,9 @@ package com.kaltura.playkitdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.kaltura.playkit.MediaEntryProvider;
@@ -78,6 +80,7 @@ public class StandalonePlayerActivity extends AppCompatActivity {
     private void startPlay() {
 
         if (mPlayer == null) {
+            showMessage(R.string.something_went_wrong);
             return;
         }
 
@@ -109,6 +112,13 @@ public class StandalonePlayerActivity extends AppCompatActivity {
             mPlayer.release();
             mControlsView.release();
         }
+    }
+
+
+    private void showMessage(int string) {
+        LinearLayout itemView = (LinearLayout) findViewById(R.id.player_root);
+        Snackbar snackbar = Snackbar.make(itemView, string, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
 

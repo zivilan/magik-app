@@ -1,4 +1,4 @@
-package com.kaltura.playkitdemo.jsonConverters;
+package com.kaltura.playkitdemo.jsonConverters.mediaEntryProviders;
 
 /**
  * Created by itanbarpeled on 19/11/2016.

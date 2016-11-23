@@ -100,6 +100,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onJsonFetched(String json) {
 
                 startMainActivity(json);
+
             }
 
         }).execute(url);
