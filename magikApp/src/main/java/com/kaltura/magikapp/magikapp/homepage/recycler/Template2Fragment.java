@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.R;
-import com.kaltura.magikapp.magikapp.asset_page.AssetInfo;
 import com.kaltura.magikapp.magikapp.asset_page.AssetPageFragment;
 import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.homepage.binders.DataBinder;
@@ -100,8 +99,8 @@ public class Template2Fragment extends Fragment {
 
     private Template1RecyclerAdapter.ItemClick mOnItemClicked = new Template1RecyclerAdapter.ItemClick() {
         @Override
-        public void onClick(AssetInfo asset) {
-            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content, AssetPageFragment.newInstance()).addToBackStack("item").commit();
+        public void onClick(KalturaMediaAsset asset) {
+            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content, AssetPageFragment.newInstance(asset)).addToBackStack("item").commit();
         }
     };
 

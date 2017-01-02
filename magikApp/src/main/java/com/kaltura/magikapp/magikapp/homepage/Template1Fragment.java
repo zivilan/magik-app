@@ -14,14 +14,13 @@ import android.view.ViewGroup;
 
 import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.R;
-import com.kaltura.magikapp.magikapp.asset_page.AssetInfo;
 import com.kaltura.magikapp.magikapp.asset_page.AssetPageFragment;
 import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.homepage.binders.DataBinder;
 import com.kaltura.magikapp.magikapp.homepage.binders.ExtendedItemGridAdapter;
 import com.kaltura.magikapp.magikapp.homepage.binders.FourImageDataBinder;
-import com.kaltura.magikapp.magikapp.homepage.binders.SimpleGridAdapterTemplate1;
 import com.kaltura.magikapp.magikapp.homepage.binders.OneImageDataBinder;
+import com.kaltura.magikapp.magikapp.homepage.binders.SimpleGridAdapterTemplate1;
 import com.kaltura.magikapp.magikapp.homepage.recycler.RowSpaceItemDecoration;
 import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
 import com.kaltura.magikapp.magikapp.toolbar.ToolbarMediator;
@@ -115,8 +114,8 @@ public class Template1Fragment extends Fragment {
 
     private Template1RecyclerAdapter.ItemClick mOnItemClicked = new Template1RecyclerAdapter.ItemClick() {
         @Override
-        public void onClick(AssetInfo asset) {
-            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content, AssetPageFragment.newInstance()).addToBackStack("item").commit();
+        public void onClick(KalturaMediaAsset asset) {
+            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content, AssetPageFragment.newInstance(asset)).addToBackStack("item").commit();
         }
     };
 

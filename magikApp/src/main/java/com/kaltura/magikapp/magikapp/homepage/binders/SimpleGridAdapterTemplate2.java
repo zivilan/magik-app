@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.R;
-import com.kaltura.magikapp.magikapp.asset_page.AssetInfo;
 import com.kaltura.magikapp.magikapp.homepage.ViewType;
 import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
 
@@ -44,7 +44,7 @@ public class SimpleGridAdapterTemplate2 extends RecyclerView.Adapter<SimpleGridA
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnItemClicked.onClick(new AssetInfo());
+                mOnItemClicked.onClick(new KalturaMediaAsset());
             }
         });
 
