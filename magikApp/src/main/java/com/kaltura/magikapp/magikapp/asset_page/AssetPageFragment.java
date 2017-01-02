@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.connect.backend.phoenix.data.KalturaMediaAsset;
+import com.kaltura.magikapp.MagikApplication;
 import com.kaltura.magikapp.PlayerControlsView;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.data.JsonFetchHandler;
@@ -120,12 +121,12 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
 
         Glide.with(mContext).load(mAssetInfo.getFiles().get(0).getUrl()).fitCenter().crossFade().into(mThumbImage);
 
-        mTitle.setText(getString(R.string.asset_title_sample));
+        mTitle.setText(mAssetInfo.getName());
         mSubTitle.setText(getString(R.string.asset_sub_title_sample));
-        mDescription.setText(getString(R.string.asset_description_sample));
+        mDescription.setText(mAssetInfo.getDescription());
 
 
-        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),theme? "fonts/Dosis-Medium.ttf" : "fonts/Raleway-Black.ttf");
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), MagikApplication.get().getConfigurations().getFontFamily());
         mTitle.setTypeface(typeface);
         mTitle.setTextColor(theme? getResources().getColor(R.color.titleColor) : Color.RED);
         mDescription.setTypeface(typeface);

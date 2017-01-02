@@ -12,6 +12,7 @@ public class KalturaMediaAsset extends BaseResult {
     int id;
     int type;
     String name;
+    String description;
     List<KalturaMediaFile> mediaFiles;
 
     public int getId() {
@@ -20,6 +21,14 @@ public class KalturaMediaAsset extends BaseResult {
 
     public int getType() {
         return type;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getDescription(){
+        return description;
     }
 
     public List<KalturaMediaFile> getFiles() {
