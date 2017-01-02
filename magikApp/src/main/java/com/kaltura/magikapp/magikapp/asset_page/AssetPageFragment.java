@@ -59,7 +59,7 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
     private View mContainer;
     private ViewPager mViewPager;
     protected FragmentAid mFragmentAid;
-    private KalturaMediaAsset mAssetInfo;
+    private static KalturaMediaAsset mAssetInfo;
     private TextView mTitle;
     private TextView mSubTitle;
     private TextView mDescription;
@@ -87,16 +87,14 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
         mContext = context;
     }
 
-    public static Fragment newInstance() {
+    public static Fragment newInstance(KalturaMediaAsset asset) {
+        mAssetInfo = asset;
         return new AssetPageFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
     }
 
     @Nullable
@@ -120,7 +118,7 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
 
         boolean theme = ((ScrollingActivity) getActivity()).getCurrentTheme() == ScrollingActivity.Theme_Type.FOOD;
 
-        Glide.with(mContext).load(theme? R.drawable.vidthumb_16x9 : R.drawable.cola).fitCenter().crossFade().into(mThumbImage);
+        Glide.with(mContext).load(mAssetInfo.getFiles().get(0).getUrl()).fitCenter().crossFade().into(mThumbImage);
 
         mTitle.setText(getString(R.string.asset_title_sample));
         mSubTitle.setText(getString(R.string.asset_sub_title_sample));
