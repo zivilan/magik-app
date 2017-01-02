@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         android:src="@drawable/login_bg"
-        android:scaleType="centerCrop"/>
+        android:scaleType="fitCenter"/>
 
     <VideoView
         android:layout_alignParentTop="true"
