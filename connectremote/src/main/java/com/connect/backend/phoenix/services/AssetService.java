@@ -38,11 +38,13 @@ public class AssetService extends PhoenixService {
         JsonObject params = new JsonObject();
         params.addProperty("ks", ks);
         params.addProperty("idEqual", channelId);
+        JsonObject filter = new JsonObject();
+        filter.addProperty("objectType","KalturaChannelFilter");
+        filter.addProperty("idEqual", channelId);
+        params.add("filter", filter);
         if(!TextUtils.isEmpty(sql)) {
             params.addProperty("kSql", sql); //"(and tagName:(:->in)'some tags seperated with comma')
         }
-        // needed to make sure response will retrieve the media file no matter if apiVersion property supplied or not
-        params.addProperty("with","[{\"type\": \"files\"}]");/*"objectType": "KalturaCatalogWithHolder"*/
 
         return new PhoenixRequestBuilder()
                 .service("asset")
