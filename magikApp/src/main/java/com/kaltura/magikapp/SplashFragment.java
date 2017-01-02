@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaltura.magikapp.magikapp.BackgroundMovementAnimation;
 
 
@@ -99,7 +100,9 @@ public class SplashFragment extends DialogFragment {
 
             }
         } else {
-            Glide.with(getContext()).load(videoUrl).fitCenter().crossFade().into(mBackgroundImage);
+            Glide.with(getContext()).load(videoUrl).diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true).fitCenter().crossFade().into(mBackgroundImage);
+
             mBackgroundImage.setVisibility(View.VISIBLE);
             mAnimator = BackgroundMovementAnimation.getMoveAnimator(mBackgroundImage, ScreenUtils.getScreenSize(getActivity()).x);
             mAnimator.start();
