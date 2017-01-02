@@ -43,6 +43,7 @@ public class Template1Fragment extends Fragment {
     private String[] mViewPagerUrls = {"http://cdn.pinchofyum.com/wp-content/uploads/Simple-Mushroom-Penne-eaten-with-fork-600x900.jpg",
             "http://cdn.pinchofyum.com/wp-content/uploads/Dynamite-Plant-Power-Sushi-Bowl-2-2-600x900.jpg",
                "http://cdn.pinchofyum.com/wp-content/uploads/Sweet-Potato-Noodle-Salad-1-6-600x900.jpg" };
+    private ArrayList<KalturaMediaAsset> assets;
 
 
     @Override
@@ -52,8 +53,14 @@ public class Template1Fragment extends Fragment {
         mContext = context;
     }
 
-    public static Fragment newInstance() {
-        return new Template1Fragment();
+    public static Fragment newInstance(ArrayList<KalturaMediaAsset> data) {
+        Template1Fragment template1Fragment = new Template1Fragment();
+        template1Fragment.setData(data);
+        return template1Fragment;
+    }
+
+    private void setData(ArrayList<KalturaMediaAsset> data) {
+        this.assets = data;
     }
 
     @Override

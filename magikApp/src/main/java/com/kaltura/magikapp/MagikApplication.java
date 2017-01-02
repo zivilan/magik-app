@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.connect.backend.PrimitiveResult;
+import com.connect.backend.SessionProvider;
 import com.connect.backend.magikapp.data.Configuration;
 import com.connect.backend.magikapp.services.ConfigurationService;
 import com.connect.core.OnCompletion;
@@ -12,8 +14,9 @@ import com.connect.utils.OnRequestCompletion;
 import com.connect.utils.RequestBuilder;
 import com.connect.utils.ResponseElement;
 import com.google.gson.Gson;
+import com.kaltura.playkit.backend.phoenix.OttSessionProvider;
 
-import java.util.concurrent.CountDownLatch;
+import static com.kaltura.magikapp.MockParams.PhoenixBaseUrl;
 
 /**
  * Created by tehilarozin on 02/01/2017.
@@ -23,6 +26,11 @@ public class MagikApplication extends Application {
     private static MagikApplication self;
     private Configuration appConfiguration;
     private ConfigurationsReady configurationsReady;
+    private static OttSessionProvider ottSessionProvider;
+
+    public SessionProvider getSessionProvider() {
+        return ottSessionProvider;
+    }
 
     public interface ConfigurationsReady{
         void onReady(Configuration configuration);
@@ -45,9 +53,20 @@ public class MagikApplication extends Application {
                 if (configuration.error == null) {
                     appConfiguration = configuration;
 
-                    if(configurationsReady != null){
-                        configurationsReady.onReady(appConfiguration);
-                    }
+                    AppLoader.startAnonymousSession(new OnCompletion<PrimitiveResult>() {
+                        @Override
+                        public void onComplete(PrimitiveResult response) {
+                            if(configurationsReady != null){
+                                if(response.error==null) {
+                                    configurationsReady.onReady(appConfiguration);
+                                } else {
+                                    Log.e("MagikApplication", "failed to create session");
+                                    configurationsReady.onLoadFailure();
+                                }
+                            }
+                        }
+                    });
+
                 } else {
                     Log.e("MagikApplication", "failed to retrieve applications configurations: " + configuration.error.getMessage());
                     Toast.makeText(getApplicationContext(), "Failed to load necessary data, application will end. ", Toast.LENGTH_LONG).show();
@@ -77,12 +96,12 @@ public class MagikApplication extends Application {
         }
     }
 
-    CountDownLatch testWaitCount;
     public Configuration getConfigurations(){
         return appConfiguration;
     }
 
     static private class AppLoader {
+
 
         static void loadConfigurations(final OnCompletion<Configuration> completion) {
             RequestBuilder requestBuilder = ConfigurationService.fetch(BuildConfig.APPLICATION_ID.replace(".", "-")).completion(new OnRequestCompletion() {
@@ -97,6 +116,18 @@ public class MagikApplication extends Application {
                 }
             });
             APIOkRequestsExecutor.getSingleton().queue(requestBuilder.build());
+        }
+
+        static void startAnonymousSession(final OnCompletion<PrimitiveResult> completion){
+            ottSessionProvider = new OttSessionProvider(PhoenixBaseUrl, 198);
+            ottSessionProvider.startAnonymousSession(null, new OnCompletion<PrimitiveResult>() {
+                @Override
+                public void onComplete(PrimitiveResult response) {
+                    if(completion != null){
+                        completion.onComplete(response);
+                    }
+                }
+            });
         }
     }
 }

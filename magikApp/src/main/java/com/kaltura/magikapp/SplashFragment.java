@@ -99,7 +99,7 @@ public class SplashFragment extends DialogFragment {
 
             }
         } else {
-            Glide.with(getContext()).load(videoUrl).centerCrop().crossFade().into(mBackgroundImage);
+            Glide.with(getContext()).load(videoUrl).fitCenter().crossFade().into(mBackgroundImage);
             mBackgroundImage.setVisibility(View.VISIBLE);
             mAnimator = BackgroundMovementAnimation.getMoveAnimator(mBackgroundImage, ScreenUtils.getScreenSize(getActivity()).x);
             mAnimator.start();

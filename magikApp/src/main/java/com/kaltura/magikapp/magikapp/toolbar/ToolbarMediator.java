@@ -31,6 +31,8 @@ public interface ToolbarMediator {
 
     void setToolbarLogo(Drawable logo);
 
+    void setToolbarLogo(String url);
+
     void setToolbarActionListener(ToolbarActionListener listener);
 
     void setToolbarColor(int color);
