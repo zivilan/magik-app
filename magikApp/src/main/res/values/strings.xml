@@ -19,6 +19,7 @@
     <string name="cc">CC</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="title">CocaCola</string>
+    <string name="title_food">Punch Of Yum</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

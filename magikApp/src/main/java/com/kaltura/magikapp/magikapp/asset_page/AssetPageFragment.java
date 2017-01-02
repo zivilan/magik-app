@@ -170,6 +170,10 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
 
     private void createPlayer(String playerConfigJson) {
 
+//        String playerConfigNew = playerConfigJson.replace("http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_tzhsuqij/format/applehttp/tags/ipad/protocol/http/f/a.m3u8",
+//                mAssetInfo.getFiles().get(0).getUrl()).replace("1_1h1vsv3z_hls",
+//                String.valueOf(mAssetInfo.getFiles().get(0).getId()));
+
         PlayerProvider playerProvider = new PlayerProvider();
         playerProvider.getPlayer(playerConfigJson, getActivity(), new PlayerProvider.OnPlayerReadyListener() {
 

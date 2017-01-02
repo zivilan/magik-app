@@ -11,6 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.connect.backend.magikapp.data.Configuration;
+
 import static com.kaltura.magikapp.PlayerControlsView.PlayerControlsEvents.ControlsEvent.ButtonClickEvent.BACK_BUTTON;
 import static com.kaltura.magikapp.PlayerControlsView.PlayerControlsEvents.ControlsEvent.ButtonClickEvent.DRAGGING;
 import static com.kaltura.magikapp.PlayerControlsView.PlayerControlsEvents.ControlsEvent.ButtonClickEvent.DRAGG_ENDED;
@@ -113,9 +115,10 @@ public class PlayerControlsView extends FrameLayout {
 
     public void setPlayPauseVisibility(boolean toShow, boolean toShowPlayView, boolean isEnded) {
 
+        boolean isFood = MagikApplication.get().getConfigurations().getThemeType().equals(Configuration.ThemeType.Food);
         if (toShow) {
             if (toShowPlayView) {
-                mPlayPause.setImageResource(R.mipmap.play);
+                mPlayPause.setImageResource(isFood? R.drawable.vid_badge_copy : R.drawable.vid_badge_black);
             } else {
                 mPlayPause.setImageResource(R.mipmap.pause);
             }
