@@ -19,19 +19,22 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import com.connect.backend.magikapp.data.Configuration;
+import com.kaltura.magikapp.MagikApplication;
 import com.kaltura.magikapp.R;
+import com.kaltura.magikapp.SplashFragment;
 import com.kaltura.magikapp.magikapp.core.ActivityComponentsInjector;
 import com.kaltura.magikapp.magikapp.core.ComponentsInjector;
 import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.core.PluginProvider;
-import com.kaltura.magikapp.magikapp.homepage.Template1Fragment;
+import com.kaltura.magikapp.magikapp.homepage.recycler.Template2Fragment;
 import com.kaltura.magikapp.magikapp.menu.MenuMediator;
 import com.kaltura.magikapp.magikapp.toolbar.ToolbarMediator;
 
 import static android.view.View.VISIBLE;
 
 
-public class ScrollingActivity extends AppCompatActivity implements FragmentAid, ToolbarMediator.ToolbarActionListener, PluginProvider {
+public class ScrollingActivity extends AppCompatActivity implements FragmentAid, ToolbarMediator.ToolbarActionListener, PluginProvider, MagikApplication.ConfigurationsReady {
 
     public MenuMediator mMenuMediator;
     private ToolbarMediator mToolbarMediator;
@@ -39,6 +42,8 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     protected android.support.v4.app.FragmentManager mFragmentManager;
     protected ProgressBar mWaitProgress;
     protected int mLastCollapsingLayoutColor = -1;
+    private SplashFragment splashFragment;
+
     private Theme_Type theme = Theme_Type.COLA;
     public enum Theme_Type {
         SPORT,
@@ -50,8 +55,13 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.base_drawer);
 
+        // TODO: show spinner!
+        MagikApplication.get().registerToConfigurationReady(this);
+    }
+
+    private void startLoadingActivity() {
+        setContentView(R.layout.base_drawer);
         initComponents();
         inflateLayout();
         initOthers();
@@ -77,7 +87,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     }
 
     private Fragment getTemplate() {
-        return Template1Fragment.newInstance();
+        return Template2Fragment.newInstance();
     }
 
     protected void inflateLayout() {
@@ -269,5 +279,28 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
         drawables[1].setColorFilter(theme == Theme_Type.FOOD? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
 
         mToolbarMediator.setHomeButton(button, drawables);
+    }
+
+    @Override
+    public void onReady(Configuration configuration) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                splashFragment = SplashFragment.newInstance(MagikApplication.get().getConfigurations().getSplashVideo());
+                splashFragment.show(getSupportFragmentManager(), "SPLASH");
+                ScrollingActivity.this.getWindow().getDecorView().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        splashFragment.dismiss();
+                        startLoadingActivity();
+                    }
+                }, 10000);
+            }
+        });
+    }
+
+    @Override
+    public void onLoadFailure() {
+        finish();
     }
 }

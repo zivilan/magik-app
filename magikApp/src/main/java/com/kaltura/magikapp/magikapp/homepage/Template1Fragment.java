@@ -19,7 +19,7 @@ import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.homepage.binders.DataBinder;
 import com.kaltura.magikapp.magikapp.homepage.binders.ExtendedItemGridAdapter;
 import com.kaltura.magikapp.magikapp.homepage.binders.FourImageDataBinder;
-import com.kaltura.magikapp.magikapp.homepage.binders.GridAdapter;
+import com.kaltura.magikapp.magikapp.homepage.binders.SimpleGridAdapterTemplate1;
 import com.kaltura.magikapp.magikapp.homepage.binders.OneImageDataBinder;
 import com.kaltura.magikapp.magikapp.homepage.recycler.RowSpaceItemDecoration;
 import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
@@ -85,7 +85,7 @@ public class Template1Fragment extends Fragment {
         binders.add(oneImageBinder);
 
         int[] drawableRes = {R.drawable.pasta, R.drawable.bliss, R.drawable.crock, R.drawable.korean};
-        GridAdapter gridAdapter = new GridAdapter(mContext, drawableRes);
+        SimpleGridAdapterTemplate1 gridAdapter = new SimpleGridAdapterTemplate1(mContext, drawableRes);
         gridAdapter.setOnClickListener(mOnItemClicked);
         FourImageDataBinder fourImageDataBinder = new FourImageDataBinder(mContext, gridAdapter);
         fourImageDataBinder.setTitles("make this for", " DINNER");
