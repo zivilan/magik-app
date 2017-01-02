@@ -78,6 +78,11 @@ public class Configuration extends BaseResult {
         return metadata != null ? metadata.splashScreenImage : null;
     }
 
+    public String getFontFamily() {
+        return theme != null && theme.font != null? theme.font.fontFamily : null;
+    }
+
+
     private class ThemeConf {
         @ThemeType String type;
         ColorConf color;
