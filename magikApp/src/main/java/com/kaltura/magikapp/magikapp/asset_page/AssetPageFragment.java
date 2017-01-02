@@ -18,11 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.kaltura.magikapp.PlayerControlsView;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.data.JsonFetchHandler;
@@ -60,6 +62,7 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
     private TextView mTitle;
     private TextView mSubTitle;
     private TextView mDescription;
+    private ImageView mThumbImage;
 
     private Player mPlayer;
     private PlayerConfig mPlayerConfig;
@@ -114,11 +117,16 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
         mSubTitle = (TextView) mContainer.findViewById(R.id.asset_sub_title);
         mDescription = (TextView) mContainer.findViewById(R.id.asset_description);
 
+        mThumbImage = (ImageView) mContainer.findViewById(R.id.video_image_thumb);
+
+        boolean theme = ((ScrollingActivity) getActivity()).getCurrentTheme() == ScrollingActivity.Theme_Type.FOOD;
+
+        Glide.with(mContext).load(theme? R.drawable.vidthumb_16x9 : R.drawable.cola).fitCenter().crossFade().into(mThumbImage);
+
         mTitle.setText(getString(R.string.asset_title_sample));
         mSubTitle.setText(getString(R.string.asset_sub_title_sample));
         mDescription.setText(getString(R.string.asset_description_sample));
 
-        boolean theme = ((ScrollingActivity) getActivity()).getCurrentTheme() == ScrollingActivity.Theme_Type.FOOD;
 
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),theme? "fonts/Dosis-Medium.ttf" : "fonts/Raleway-Black.ttf");
         mTitle.setTypeface(typeface);
