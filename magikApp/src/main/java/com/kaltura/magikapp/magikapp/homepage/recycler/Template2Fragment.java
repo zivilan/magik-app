@@ -99,8 +99,9 @@ public class Template2Fragment extends Fragment {
 
     private Template1RecyclerAdapter.ItemClick mOnItemClicked = new Template1RecyclerAdapter.ItemClick() {
         @Override
-        public void onClick(KalturaMediaAsset asset) {
-            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content, AssetPageFragment.newInstance(asset)).addToBackStack("item").commit();
+        public void onClick(int position) {
+            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content,
+                    AssetPageFragment.newInstance(assets.get(0))).addToBackStack("item").commit();
         }
     };
 

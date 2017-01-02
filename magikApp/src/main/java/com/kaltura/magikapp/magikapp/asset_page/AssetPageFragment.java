@@ -116,14 +116,16 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
 
         mThumbImage = (ImageView) mContainer.findViewById(R.id.video_image_thumb);
 
-        Glide.with(mContext).load(mAssetInfo.getFiles().get(0).getUrl()).fitCenter().crossFade().into(mThumbImage);
+        String url = mAssetInfo.getImages().get(0).getUrl();
+        Glide.with(mContext).load(url).fitCenter().crossFade().into(mThumbImage);
 
         mTitle.setText(mAssetInfo.getName());
         mSubTitle.setText(getString(R.string.asset_sub_title_sample));
         mDescription.setText(mAssetInfo.getDescription());
 
 
-        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), MagikApplication.get().getConfigurations().getFontFamily());
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/" + MagikApplication.get().getConfigurations().getFontFamily());
         mTitle.setTypeface(typeface);
         mTitle.setTextColor(Color.parseColor(MagikApplication.get().getConfigurations().getPrimaryClr()));
         mDescription.setTypeface(typeface);

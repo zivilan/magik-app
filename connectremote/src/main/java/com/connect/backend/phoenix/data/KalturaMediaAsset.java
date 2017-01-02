@@ -14,6 +14,8 @@ public class KalturaMediaAsset extends BaseResult {
     String name;
     String description;
     List<KalturaMediaFile> mediaFiles;
+    List<KalturaMediaImage> images;
+
 
     public int getId() {
         return id;
@@ -35,4 +37,7 @@ public class KalturaMediaAsset extends BaseResult {
         return mediaFiles;
     }
 
+    public List<KalturaMediaImage> getImages() {
+        return images;
+    }
 }

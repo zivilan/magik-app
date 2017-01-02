@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.magikapp.homepage.binders.DataBinder;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class Template1RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
     private Context mContext;
 
     public interface ItemClick{
-        void onClick(KalturaMediaAsset asset);
+        void onClick(int position);
     }
 
 

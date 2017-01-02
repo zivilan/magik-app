@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
 
@@ -42,7 +41,7 @@ public class ExtendedItemGridAdapter extends RecyclerView.Adapter<ExtendedItemGr
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnItemClicked.onClick(new KalturaMediaAsset());
+                mOnItemClicked.onClick(0);
             }
         });
 
@@ -50,8 +49,15 @@ public class ExtendedItemGridAdapter extends RecyclerView.Adapter<ExtendedItemGr
     }
 
     @Override
-    public void onBindViewHolder(ExtendedItemGridAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ExtendedItemGridAdapter.ViewHolder holder, final int position) {
         Glide.with(mContext).load(mDrawableRes[position]).centerCrop().crossFade().into(holder.mImageView);
+
+        holder.mRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnItemClicked.onClick(position);
+            }
+        });
 
         String title = null;
         String subTitle = null;
@@ -90,9 +96,11 @@ public class ExtendedItemGridAdapter extends RecyclerView.Adapter<ExtendedItemGr
 
         TextView mTitleTextView;
         TextView mSubTitleTextView;
+        View mRoot;
 
         public ViewHolder(View view) {
             super(view);
+            mRoot = view;
             mTitleTextView = (TextView) view.findViewById(R.id.oneimage_image_title);
             mSubTitleTextView = (TextView) view.findViewById(R.id.oneimage_image_sub_title);
         }

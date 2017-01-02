@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.magikapp.homepage.ViewType;
 import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
@@ -41,20 +40,21 @@ public class SimpleGridAdapterTemplate2 extends RecyclerView.Adapter<SimpleGridA
             view = LayoutInflater.from(mContext).inflate(R.layout.fourimage_item_template2_player_layout, parent, false);
         }
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mOnItemClicked.onClick(new KalturaMediaAsset());
-            }
-        });
+
 
         // same viewHolder same data
         return new SimpleGridAdapterTemplate2.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(SimpleGridAdapterTemplate2.ViewHolder holder, int position) {
+    public void onBindViewHolder(SimpleGridAdapterTemplate2.ViewHolder holder, final int position) {
         Glide.with(mContext).load(mDrawableRes[position]).centerCrop().crossFade().into(holder.mImageView);
+        holder.mRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnItemClicked.onClick(position);
+            }
+        });
     }
 
     @Override
@@ -76,9 +76,11 @@ public class SimpleGridAdapterTemplate2 extends RecyclerView.Adapter<SimpleGridA
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView mImageView;
+        View mRoot;
 
         public ViewHolder(View view) {
             super(view);
+            mRoot = view;
             mImageView = (ImageView) view.findViewById(R.id.four_image_item_image_view);
         }
     }
