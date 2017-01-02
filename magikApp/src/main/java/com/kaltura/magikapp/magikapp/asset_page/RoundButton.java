@@ -2,8 +2,6 @@ package com.kaltura.magikapp.magikapp.asset_page;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
@@ -159,11 +157,7 @@ public class RoundButton extends BaseRoundButton implements SecondaryViewsInitia
                 break;
         }
 
-        pressed.setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
-        notPressed.setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
-
         return new Drawable[]{pressed, notPressed};
-
     }
 
     /**

@@ -124,8 +124,7 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
         mDescription.setText(mAssetInfo.getDescription());
 
 
-        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                "fonts/" + MagikApplication.get().getConfigurations().getFontFamily());
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/" + MagikApplication.get().getConfigurations().getFontFamily());
         mTitle.setTypeface(typeface);
         mTitle.setTextColor(Color.parseColor(MagikApplication.get().getConfigurations().getSecondaryClr()));
         mDescription.setTypeface(typeface);
