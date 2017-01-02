@@ -14,7 +14,7 @@ import com.kaltura.magikapp.R;
 public class SecondaryButtons extends RelativeLayout implements View.OnClickListener {
 
     private BaseRoundButton mComments;
-    private ExpandingRoundButton mLike;
+    private BaseRoundButton mLike;
     private BaseRoundButton mShare;
     private BaseRoundButton mFavorites;
 
@@ -81,7 +81,7 @@ public class SecondaryButtons extends RelativeLayout implements View.OnClickList
         mShare.setOnClickListener(this);
         mFavorites = (BaseRoundButton) root.findViewById(R.id.helen_round_button_favorites_button);
         mFavorites.setOnClickListener(this);
-        mLike = (ExpandingRoundButton) root.findViewById(R.id.helen_round_button_like_button);
+        mLike = (BaseRoundButton) root.findViewById(R.id.helen_round_button_like_button);
         mLike.setOnClickListener(this);
 
     }

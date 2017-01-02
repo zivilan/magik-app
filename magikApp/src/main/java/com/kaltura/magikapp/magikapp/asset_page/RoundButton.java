@@ -9,6 +9,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.connect.backend.magikapp.data.Configuration;
 import com.kaltura.magikapp.R;
 
 /**
@@ -89,42 +90,72 @@ public class RoundButton extends BaseRoundButton implements SecondaryViewsInitia
         }
     }
 
-
-
     private Drawable[] populateCommonImages(RoundButtonCommonImage mode) {
-
-        MagiKApplication
-
         Drawable notPressed = null;
         Drawable pressed = null;
         switch (mode){
             case Like:
-                notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_face, null);
-                pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_face, null);
+                if (mThemeType.equals(Configuration.ThemeType.Food)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_face, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_face, null);
+                } else if (mThemeType.equals(Configuration.ThemeType.Festival)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_facer, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_facer, null);
+                }
                 break;
             case Comment:
-                notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_insta, null);
-                pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_insta, null);
+                if (mThemeType.equals(Configuration.ThemeType.Food)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_insta, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_insta, null);
+                } else if (mThemeType.equals(Configuration.ThemeType.Festival)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_instar, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_instar, null);
+                }
                 break;
             case Favorites:
-                notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_pintrest, null);
-                pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_pintrest, null);
+                if (mThemeType.equals(Configuration.ThemeType.Food)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_pintrest, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_pintrest, null);
+                } else if (mThemeType.equals(Configuration.ThemeType.Festival)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_pintrestr, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_pintrestr, null);
+                }
                 break;
             case Share:
-                notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_mail, null);
-                pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_mail, null);
+                if (mThemeType.equals(Configuration.ThemeType.Food)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_mail, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_mail, null);
+                } else if (mThemeType.equals(Configuration.ThemeType.Festival)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_mailr, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_mailr, null);
+                }
                 break;
             case Play:
-                notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.vid_badge_copy, null);
-                pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.vid_badge_copy, null);
+                if (mThemeType.equals(Configuration.ThemeType.Food)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.vid_badge_copy, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.vid_badge_copy, null);
+                } else if (mThemeType.equals(Configuration.ThemeType.Festival)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.drawable.vid_badge_black, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.drawable.vid_badge_black, null);
+                }
                 break;
             case Download:
-                notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
-                pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
+                if (mThemeType.equals(Configuration.ThemeType.Food)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
+                } else if (mThemeType.equals(Configuration.ThemeType.Festival)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_twitterr, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_twitterr, null);
+                }
                 break;
             case MoreOptions:
-                notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
-                pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
+                if (mThemeType.equals(Configuration.ThemeType.Food)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_twitter, null);
+                } else if (mThemeType.equals(Configuration.ThemeType.Festival)) {
+                    notPressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_twitterr, null);
+                    pressed = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_twitterr, null);
+                }
                 break;
         }
 

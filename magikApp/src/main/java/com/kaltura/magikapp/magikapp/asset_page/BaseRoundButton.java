@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.connect.backend.magikapp.data.Configuration;
+import com.kaltura.magikapp.MagikApplication;
 import com.kaltura.magikapp.R;
 
 /**
@@ -26,6 +28,7 @@ public abstract class BaseRoundButton extends LinearLayout {
     protected LinearLayout mContainer;
     protected int mPrimaryColor;
     protected ButtonSize mButtonSize;
+    protected String mThemeType = Configuration.ThemeType.Festival;
 
     public enum ButtonSize {
         Small(0),
@@ -67,6 +70,7 @@ public abstract class BaseRoundButton extends LinearLayout {
 
     protected void init(Context context, AttributeSet attrs){
         mContainer = (LinearLayout) mRoot.findViewById(R.id.round_button_container);
+        mThemeType = MagikApplication.get().getConfigurations().getThemeType();
 
         if (attrs != null) {
             TypedArray appearance = context.obtainStyledAttributes(attrs, R.styleable.HelenRoundButton);
@@ -75,25 +79,8 @@ public abstract class BaseRoundButton extends LinearLayout {
                 mButtonSize = ButtonSize.fromId(size);
                 mContainer.setLayoutParams(getButtonLayoutParams());
             }
+
         }
-
-//        if (!isInEditMode()) {
-//            String tmpPrimaryColor = getConfiguration().getColor(ConfigObjectConsts.COLOR_PRIMARY, ConfigObjectConsts.COLOR_PRIMARY1);
-//            mPrimaryColor = Color.parseColor(tmpPrimaryColor);
-//        } else {
-//            mPrimaryColor = Color.parseColor(String.valueOf(Color.MAGENTA));
-//        }
-
-//        Drawable defaultBackground = getDefaultBackground();
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            String tmpPrimaryColor = TvinciSDK.getConfiguration().getColor(ConfigObjectConsts.COLOR_SECONDARY, ConfigObjectConsts.COLOR_SECONDARY1);
-//            RippleDrawable r = new RippleDrawable(getPressedColorSelector(Color.parseColor(tmpPrimaryColor)), defaultBackground, null);
-//            setBackground(r);
-//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//            setBackground(defaultBackground);
-//        } else {
-//            setBackgroundDrawable(defaultBackground);
-//        }
     }
 
     abstract protected int getButtonLayout();
