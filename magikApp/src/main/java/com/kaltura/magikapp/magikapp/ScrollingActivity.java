@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
@@ -50,14 +51,6 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     protected ProgressBar mWaitProgress;
     protected int mLastCollapsingLayoutColor = -1;
     private SplashFragment splashFragment;
-
-    private Theme_Type theme = Theme_Type.COLA;
-
-    public enum Theme_Type {
-        SPORT,
-        COLA,
-        FOOD
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +93,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
 
         Drawable icon = menu.getItem(0).getIcon();
         icon.mutate();
-        icon.setColorFilter(theme == Theme_Type.FOOD ? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
+        icon.setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getSecondaryClr()), PorterDuff.Mode.SRC_IN);
 
         mToolbarMediator.setToolbarMenu(menu);
 
@@ -126,10 +119,6 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
 
     protected void inflateLayout(Fragment fragment) {
         getFragmentManager().beginTransaction().add(R.id.activity_scrolling_content, /*getTemplate()*/fragment).commit();
-    }
-
-    public Theme_Type getCurrentTheme() {
-        return theme;
     }
 
     protected void initComponents() {
@@ -220,18 +209,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     }
 
     protected int[] getCollapsingFromToBackColors(boolean transparent) {
-        int color = -1;
-        switch (theme) {
-            case FOOD:
-                color = Color.WHITE;
-                break;
-            case COLA:
-                color = Color.RED;
-                break;
-            case SPORT:
-                color = Color.GREEN;
-                break;
-        }
+        int color = Color.parseColor(MagikApplication.get().getConfigurations().getPrimaryClr());
         int[] colors = new int[2];
         colors[0] = transparent ? color : Color.TRANSPARENT;
         colors[1] = transparent ? Color.TRANSPARENT : color;
@@ -298,9 +276,9 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     public void setToolbarHomeButton(@ToolbarMediator.ToolbarHomeButton int button) {
         Drawable[] drawables = new Drawable[2];
         drawables[0] = getResources().getDrawable(R.mipmap.ic_action_navigation_arrow_back);
-        drawables[0].setColorFilter(theme == Theme_Type.FOOD ? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
+        drawables[0].setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getSecondaryClr()), PorterDuff.Mode.SRC_IN);
         drawables[1] = getResources().getDrawable(R.mipmap.menu_icon_tablet);
-        drawables[1].setColorFilter(theme == Theme_Type.FOOD ? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
+        drawables[1].setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getSecondaryClr()), PorterDuff.Mode.SRC_IN);
 
         mToolbarMediator.setHomeButton(button, drawables);
     }
@@ -310,6 +288,11 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Window window = getWindow();
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                    window.setStatusBarColor(Color.TRANSPARENT);
+                }
                 String url = MagikApplication.get().getConfigurations().getSplashVideo();
                 splashFragment = SplashFragment.newInstance(url != null? url : MagikApplication.get().getConfigurations().getSplashImage(), url != null);
                 splashFragment.show(getSupportFragmentManager(), "SPLASH");

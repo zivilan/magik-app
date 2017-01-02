@@ -119,7 +119,7 @@ public class MagikApplication extends Application {
         }
 
         static void startAnonymousSession(final OnCompletion<PrimitiveResult> completion){
-            ottSessionProvider = new OttSessionProvider(PhoenixBaseUrl, 198);
+            ottSessionProvider = new OttSessionProvider(PhoenixBaseUrl, 1225);
             ottSessionProvider.startAnonymousSession(null, new OnCompletion<PrimitiveResult>() {
                 @Override
                 public void onComplete(PrimitiveResult response) {

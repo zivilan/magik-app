@@ -33,7 +33,6 @@ import com.kaltura.magikapp.data.JsonFetchHandler;
 import com.kaltura.magikapp.magikapp.PlayerControlsController;
 import com.kaltura.magikapp.magikapp.PlayerProvider;
 import com.kaltura.magikapp.magikapp.PresenterController;
-import com.kaltura.magikapp.magikapp.ScrollingActivity;
 import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.toolbar.ToolbarMediator;
 import com.kaltura.playkit.PKEvent;
@@ -117,8 +116,6 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
 
         mThumbImage = (ImageView) mContainer.findViewById(R.id.video_image_thumb);
 
-        boolean theme = ((ScrollingActivity) getActivity()).getCurrentTheme() == ScrollingActivity.Theme_Type.FOOD;
-
         Glide.with(mContext).load(mAssetInfo.getFiles().get(0).getUrl()).fitCenter().crossFade().into(mThumbImage);
 
         mTitle.setText(mAssetInfo.getName());
@@ -128,7 +125,7 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
 
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), MagikApplication.get().getConfigurations().getFontFamily());
         mTitle.setTypeface(typeface);
-        mTitle.setTextColor(theme? getResources().getColor(R.color.titleColor) : Color.RED);
+        mTitle.setTextColor(Color.parseColor(MagikApplication.get().getConfigurations().getPrimaryClr()));
         mDescription.setTypeface(typeface);
 
         mPlayerContainer = (FrameLayout) mContainer.findViewById(R.id.player_container);
