@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.PlayerControlsView;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.data.JsonFetchHandler;
@@ -58,7 +59,7 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
     private View mContainer;
     private ViewPager mViewPager;
     protected FragmentAid mFragmentAid;
-    private int assetId;
+    private KalturaMediaAsset mAssetInfo;
     private TextView mTitle;
     private TextView mSubTitle;
     private TextView mDescription;
@@ -102,9 +103,7 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContainer = inflater.inflate(R.layout.asset_page_layout, container, false);
-
         return mContainer;
-
     }
 
     @Override
