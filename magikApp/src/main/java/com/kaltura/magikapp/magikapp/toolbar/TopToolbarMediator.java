@@ -1,7 +1,6 @@
 package com.kaltura.magikapp.magikapp.toolbar;
 
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.magikapp.core.PluginProvider;
 
@@ -88,7 +89,9 @@ public class TopToolbarMediator implements View.OnClickListener, ToolbarMediator
     @Override
     public void setToolbarLogo(String url){
         if (mToolbarLogo != null) {
-            mToolbarLogo.setImageURI(Uri.parse(url));
+            Glide.with(mProvider.getActivity()).load(url).diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true).crossFade().into(mToolbarLogo);
+//            mToolbarLogo.setImageURI(Uri.parse(url));
         }
     }
 
