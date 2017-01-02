@@ -5,23 +5,25 @@ android {
     buildToolsVersion "25.0.0"
 
     defaultConfig {
-        applicationId "com.kaltura.magikapp"
+        applicationId "com.kaltura.magikapp.food"
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     testOptions {
         unitTests.returnDefaultValues = true
     }
+
     lintOptions{
         abortOnError false
     }
@@ -38,7 +40,6 @@ dependencies {
     compile 'com.android.support:percent:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.18.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 
