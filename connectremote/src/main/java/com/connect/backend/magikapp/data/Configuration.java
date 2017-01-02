@@ -74,6 +74,9 @@ public class Configuration extends BaseResult {
         return metadata != null ? metadata.splashScreen : null;
     }
 
+    public String getSplashImage() {
+        return metadata != null ? metadata.splashScreenImage : null;
+    }
 
     private class ThemeConf {
         @ThemeType String type;
@@ -97,6 +100,7 @@ public class Configuration extends BaseResult {
         String logo; //image url
         String name;
         String splashScreen; //video url
+        String splashScreenImage; //image url
     }
 
     private class ContentConf {

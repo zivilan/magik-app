@@ -286,7 +286,8 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                splashFragment = SplashFragment.newInstance(MagikApplication.get().getConfigurations().getSplashVideo());
+                String url = MagikApplication.get().getConfigurations().getSplashVideo();
+                splashFragment = SplashFragment.newInstance(url != null? url : MagikApplication.get().getConfigurations().getSplashImage(), url != null);
                 splashFragment.show(getSupportFragmentManager(), "SPLASH");
                 ScrollingActivity.this.getWindow().getDecorView().postDelayed(new Runnable() {
                     @Override
