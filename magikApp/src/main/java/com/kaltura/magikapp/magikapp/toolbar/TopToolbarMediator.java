@@ -1,6 +1,7 @@
 package com.kaltura.magikapp.magikapp.toolbar;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -81,6 +82,13 @@ public class TopToolbarMediator implements View.OnClickListener, ToolbarMediator
     public void setToolbarLogo(Drawable logo){
         if (mToolbarLogo != null) {
             mToolbarLogo.setImageDrawable(logo);
+        }
+    }
+
+    @Override
+    public void setToolbarLogo(String url){
+        if (mToolbarLogo != null) {
+            mToolbarLogo.setImageURI(Uri.parse(url));
         }
     }
 

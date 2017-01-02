@@ -43,7 +43,7 @@ public class Configuration extends BaseResult {
     }
 
     public int getChannelId(){
-        return metadata.channelId;
+        return 384719;// metadata.channelId;
     }
 
     public String getPrimaryClr(){

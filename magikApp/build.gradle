@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.kaltura.magikapp.cola"
+        //applicationId "com.kaltura.magikapp.food"
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
@@ -28,9 +29,7 @@ android {
         abortOnError false
     }
 
-    dexOptions {
-        jumboMode true
-    }
+
 }
 
 dependencies {
