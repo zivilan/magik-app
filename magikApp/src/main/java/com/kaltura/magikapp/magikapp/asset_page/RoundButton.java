@@ -87,7 +87,12 @@ public class RoundButton extends BaseRoundButton implements SecondaryViewsInitia
         }
     }
 
+
+
     private Drawable[] populateCommonImages(RoundButtonCommonImage mode) {
+
+        MagiKApplication
+
         Drawable notPressed = null;
         Drawable pressed = null;
         switch (mode){
