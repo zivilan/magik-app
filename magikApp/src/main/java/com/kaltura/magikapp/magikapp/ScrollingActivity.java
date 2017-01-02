@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,8 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import com.connect.backend.magikapp.data.Configuration;
+import com.connect.backend.phoenix.data.KalturaMediaAsset;
+import com.connect.core.OnCompletion;
 import com.kaltura.magikapp.MagikApplication;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.SplashFragment;
@@ -27,11 +30,15 @@ import com.kaltura.magikapp.magikapp.core.ActivityComponentsInjector;
 import com.kaltura.magikapp.magikapp.core.ComponentsInjector;
 import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.core.PluginProvider;
+import com.kaltura.magikapp.magikapp.homepage.Template1Fragment;
 import com.kaltura.magikapp.magikapp.homepage.recycler.Template2Fragment;
 import com.kaltura.magikapp.magikapp.menu.MenuMediator;
 import com.kaltura.magikapp.magikapp.toolbar.ToolbarMediator;
 
+import java.util.ArrayList;
+
 import static android.view.View.VISIBLE;
+import static com.connect.backend.magikapp.data.Configuration.ThemeType;
 
 
 public class ScrollingActivity extends AppCompatActivity implements FragmentAid, ToolbarMediator.ToolbarActionListener, PluginProvider, MagikApplication.ConfigurationsReady {
@@ -45,6 +52,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     private SplashFragment splashFragment;
 
     private Theme_Type theme = Theme_Type.COLA;
+
     public enum Theme_Type {
         SPORT,
         COLA,
@@ -63,8 +71,26 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     private void startLoadingActivity() {
         setContentView(R.layout.base_drawer);
         initComponents();
-        inflateLayout();
+        fetchContent();//inflateLayout();
         initOthers();
+    }
+
+    private void fetchContent() {
+        DataLoader.getChannelContent(MagikApplication.get().getSessionProvider(),
+                MagikApplication.get().getConfigurations().getChannelId(),
+                new OnCompletion<ArrayList<KalturaMediaAsset>>() {
+                    @Override
+                    public void onComplete(ArrayList<KalturaMediaAsset> data) {
+                        if (data != null && data.size() > 0) {
+                            Fragment fragment = getTemplate(data);
+                            if (fragment != null) {
+                                inflateLayout(fragment);
+                            } else{
+                                Log.e("ScrollingActivity", "failed to fetch assets");
+                            }
+                        }
+                    }
+                });
     }
 
     @Override
@@ -74,7 +100,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
 
         Drawable icon = menu.getItem(0).getIcon();
         icon.mutate();
-        icon.setColorFilter(theme == Theme_Type.FOOD? Color.DKGRAY: Color.WHITE, PorterDuff.Mode.SRC_IN);
+        icon.setColorFilter(theme == Theme_Type.FOOD ? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
 
         mToolbarMediator.setToolbarMenu(menu);
 
@@ -86,15 +112,23 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
         return super.onPrepareOptionsMenu(menu);
     }
 
-    private Fragment getTemplate() {
-        return Template2Fragment.newInstance();
+    private Fragment getTemplate(ArrayList<KalturaMediaAsset> data) {
+        @ThemeType String themeType = MagikApplication.get().getConfigurations().getThemeType();
+        switch (themeType) {
+            case ThemeType.Festival:
+                return Template2Fragment.newInstance(data);
+
+            case ThemeType.Food:
+                return Template1Fragment.newInstance(data);
+        }
+        return null;
     }
 
-    protected void inflateLayout() {
-        getFragmentManager().beginTransaction().add(R.id.activity_scrolling_content, getTemplate()).commit();
+    protected void inflateLayout(Fragment fragment) {
+        getFragmentManager().beginTransaction().add(R.id.activity_scrolling_content, /*getTemplate()*/fragment).commit();
     }
 
-    public Theme_Type getCurrentTheme(){
+    public Theme_Type getCurrentTheme() {
         return theme;
     }
 
@@ -105,17 +139,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
 
         mToolbarMediator = injector.getToolbar(this);// new TopToolbarMediator(this, R.id.toolbar, this);
         mToolbarMediator.setToolbarActionListener(this);
-        switch (theme){
-            case FOOD:
-                mToolbarMediator.setToolbarLogo(getResources().getDrawable(R.drawable.logo_app));
-                break;
-            case COLA:
-                mToolbarMediator.setToolbarLogo(getResources().getDrawable(R.drawable.coca_cola_logo));
-                break;
-            case SPORT:
-                mToolbarMediator.setToolbarLogo(getResources().getDrawable(R.drawable.logo_app));
-                break;
-        }
+        mToolbarMediator.setToolbarLogo(MagikApplication.get().getConfigurations().getLogo());
 
         mCoordMainContainer = (CoordinatorLayout) findViewById(R.id.activity_scrolling);
 //        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
@@ -197,7 +221,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
 
     protected int[] getCollapsingFromToBackColors(boolean transparent) {
         int color = -1;
-        switch (theme){
+        switch (theme) {
             case FOOD:
                 color = Color.WHITE;
                 break;
@@ -248,7 +272,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     }
 
     @Override
-    public void setStatusBarColor(int color/*Activity activity, Context context, boolean isTransparent*/){
+    public void setStatusBarColor(int color/*Activity activity, Context context, boolean isTransparent*/) {
         //mToolbarMediator.setStatusBarState(activity, context, isTransparent);
         if (color != -1) {
             int windowFlagskitkat = -1;
@@ -260,7 +284,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
                 windowFlagskitkat = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION |
                         WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
             }
-            if (windowFlagskitkat != -1){
+            if (windowFlagskitkat != -1) {
                 getWindow().setFlags(windowFlagskitkat, windowFlagskitkat);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     getWindow().setStatusBarColor(color/*context.getResources().getColor(R.color.transparent)*/);
@@ -274,9 +298,9 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     public void setToolbarHomeButton(@ToolbarMediator.ToolbarHomeButton int button) {
         Drawable[] drawables = new Drawable[2];
         drawables[0] = getResources().getDrawable(R.mipmap.ic_action_navigation_arrow_back);
-        drawables[0].setColorFilter(theme == Theme_Type.FOOD? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
+        drawables[0].setColorFilter(theme == Theme_Type.FOOD ? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
         drawables[1] = getResources().getDrawable(R.mipmap.menu_icon_tablet);
-        drawables[1].setColorFilter(theme == Theme_Type.FOOD? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
+        drawables[1].setColorFilter(theme == Theme_Type.FOOD ? Color.DKGRAY : Color.WHITE, PorterDuff.Mode.SRC_IN);
 
         mToolbarMediator.setHomeButton(button, drawables);
     }
@@ -294,7 +318,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
                         splashFragment.dismiss();
                         startLoadingActivity();
                     }
-                }, 10000);
+                }, 5000);
             }
         });
     }

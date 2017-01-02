@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.connect.backend.phoenix.data.KalturaMediaAsset;
 import com.kaltura.magikapp.R;
 import com.kaltura.magikapp.magikapp.asset_page.AssetInfo;
 import com.kaltura.magikapp.magikapp.asset_page.AssetPageFragment;
@@ -39,6 +40,7 @@ public class Template2Fragment extends Fragment {
     private String[] mViewPagerUrls = {"http://cdn.pinchofyum.com/wp-content/uploads/Simple-Mushroom-Penne-eaten-with-fork-600x900.jpg",
             "http://cdn.pinchofyum.com/wp-content/uploads/Dynamite-Plant-Power-Sushi-Bowl-2-2-600x900.jpg",
             "http://cdn.pinchofyum.com/wp-content/uploads/Sweet-Potato-Noodle-Salad-1-6-600x900.jpg" };
+    private ArrayList<KalturaMediaAsset> assets;
 
 
     @Override
@@ -48,8 +50,14 @@ public class Template2Fragment extends Fragment {
         mContext = context;
     }
 
-    public static Fragment newInstance() {
-        return new Template2Fragment();
+    public static Fragment newInstance(ArrayList<KalturaMediaAsset> data) {
+        Template2Fragment template2Fragment = new Template2Fragment();
+        template2Fragment.setData(data);
+        return template2Fragment;
+    }
+
+    private void setData(ArrayList<KalturaMediaAsset> data) {
+        this.assets = data;
     }
 
     @Override
