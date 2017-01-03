@@ -37,7 +37,7 @@ public class AssetService extends PhoenixService {
     public static PhoenixRequestBuilder listByChannel(String baseUrl, String ks, int channelId, String sql) {
         JsonObject params = new JsonObject();
         params.addProperty("ks", ks);
-        params.addProperty("idEqual", channelId);
+       // params.addProperty("idEqual", channelId);
         JsonObject filter = new JsonObject();
         filter.addProperty("objectType","KalturaChannelFilter");
         filter.addProperty("idEqual", channelId);

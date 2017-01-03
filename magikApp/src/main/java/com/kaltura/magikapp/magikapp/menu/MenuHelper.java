@@ -26,21 +26,25 @@ public class MenuHelper {
         return sMenuHelper;
     }
 
-    public List<MenuItem> getMenuItems(){
-        if(menuItems == null){
+    public List<MenuItem> getMenuItems() {
+        if (menuItems == null) {
             ArrayList<Configuration.MenuItemConf> configItems = MagikApplication.get().getConfigurations().getMenu();
             menuItems = new ArrayList<>();
-            if(configItems != null) {
+            if (configItems != null && configItems.size() > 1) {
                 for (Configuration.MenuItemConf menuItemConf : configItems) {
                     menuItems.add(new MenuItem(menuItemConf));
                 }
+            } else {
+                menuItems.add(new MenuItem("home", "Home"));
+                menuItems.add(new MenuItem("latest", "Latest"));
+                menuItems.add(new MenuItem("recommended", "Recommended"));
             }
         }
         return menuItems;
     }
 
     public static int getMenuItemPosition(String id) {
-        if(!TextUtils.isEmpty(id)) {
+        if (!TextUtils.isEmpty(id)) {
             List<MenuItem> menuItems = getInstance().menuItems;
             for (int i = 0; i < menuItems.size(); i++) {
                 if (getInstance().menuItems.get(i).getId().equals(id)) {

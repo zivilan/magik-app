@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kaltura.magikapp.MagikApplication;
 import com.kaltura.magikapp.R;
 
 import java.util.List;
@@ -71,7 +72,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         holder.itemName.setText(menuItem.getTitle());
         holder.indicator.setVisibility(menuItem.isSelected() ? View.VISIBLE : View.INVISIBLE);
         //holder.itemIcon.setImageResource(menuItem.getResIcon());
-        holder.mainLayout.setBackgroundResource(menuItem.isSelected() ? R.color.selected_menu_item_bg : R.color.menuBackgroud);
+        holder.mainLayout.setBackgroundResource(menuItem.isSelected() ? R.color.selected_menu_item_bg : android.R.color.transparent);
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +137,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             super(view);
             this.mainLayout = view;
             this.itemName = (TextView) view.findViewById(R.id.title);
+            this.itemName.setTextColor(MagikApplication.get().getConfigurations().getSecondary());
             this.indicator = view.findViewById(R.id.indicator);
             this.itemIcon = (ImageView) view.findViewById(R.id.icon);
         }
