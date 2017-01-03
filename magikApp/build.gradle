@@ -5,8 +5,8 @@ android {
     buildToolsVersion "25.0.0"
 
     defaultConfig {
-//        applicationId "com.kaltura.magikapp.cola"
-        applicationId "com.kaltura.magikapp.food"
+        applicationId "com.kaltura.magikapp.cola"
+//        applicationId "com.kaltura.magikapp.food"
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
