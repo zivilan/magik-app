@@ -88,6 +88,7 @@ public class Template1Fragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 
         OneImageDataBinder oneImageBinder = new OneImageDataBinder(mContext);
+        oneImageBinder.setOnClickListener(mOnItemClicked);
         oneImageBinder.setData(mViewPagerUrls[0], "Dynamite plant test", "April 11, 2016 test");
         List<DataBinder> binders = new ArrayList<>();
         binders.add(oneImageBinder);

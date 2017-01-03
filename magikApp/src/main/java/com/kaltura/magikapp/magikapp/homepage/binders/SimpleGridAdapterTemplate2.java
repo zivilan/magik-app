@@ -39,8 +39,6 @@ public class SimpleGridAdapterTemplate2 extends RecyclerView.Adapter<SimpleGridA
             view = LayoutInflater.from(mContext).inflate(R.layout.fourimage_item_template2_player_layout, parent, false);
         }
 
-
-
         // same viewHolder same data
         return new SimpleGridAdapterTemplate2.ViewHolder(view);
     }

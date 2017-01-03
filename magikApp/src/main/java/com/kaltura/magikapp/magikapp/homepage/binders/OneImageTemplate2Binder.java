@@ -17,7 +17,6 @@ import com.kaltura.magikapp.R;
 public class OneImageTemplate2Binder extends DataBinder<OneImageTemplate2Binder.ViewHolder> {
 
     private String mUrl;
-    private ItemClick mClickListener;
 
     public OneImageTemplate2Binder(Context context) {
         super(context);
@@ -37,7 +36,7 @@ public class OneImageTemplate2Binder extends DataBinder<OneImageTemplate2Binder.
         holder.mRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mClickListener.onClick(position);
+                mOnItemClick.onClick(position);
             }
         });
 
@@ -51,10 +50,6 @@ public class OneImageTemplate2Binder extends DataBinder<OneImageTemplate2Binder.
     @Override
     public int getItemCount() {
         return 1;
-    }
-
-    public void setOnClickListener(ItemClick onItemClicked) {
-        mClickListener = onItemClicked;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

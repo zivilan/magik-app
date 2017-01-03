@@ -40,11 +40,18 @@ public class OneImageDataBinder extends DataBinder<OneImageDataBinder.ViewHolder
     }
 
     @Override
-    public void bindViewHolder(ViewHolder holder, int position) {
+    public void bindViewHolder(ViewHolder holder, final int position) {
         Glide.with(mContext).load(R.drawable.dynamite).centerCrop().crossFade().into(holder.mImageView);
 
         holder.mTitleTextView.setText(mTitleText);
         holder.mSubTitleTextView.setText(mSubTitleText);
+
+        holder.mRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnItemClick.onClick(position);
+            }
+        });
     }
 
     @Override
@@ -62,9 +69,11 @@ public class OneImageDataBinder extends DataBinder<OneImageDataBinder.ViewHolder
         ImageView mImageView;
         TextView mTitleTextView;
         TextView mSubTitleTextView;
+        View mRoot;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            mRoot = itemView;
             mImageView = (ImageView)itemView.findViewById(R.id.oneimage_image);
             mTitleTextView = (TextView)itemView.findViewById(R.id.oneimage_image_title);
             mSubTitleTextView = (TextView)itemView.findViewById(R.id.oneimage_image_sub_title);

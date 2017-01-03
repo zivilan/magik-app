@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 abstract public class DataBinder <T extends RecyclerView.ViewHolder>{
 
     protected Context mContext;
+    protected ItemClick mOnItemClick;
 
     public DataBinder(Context context) {
         mContext = context;
@@ -25,5 +26,9 @@ abstract public class DataBinder <T extends RecyclerView.ViewHolder>{
     abstract public int getItemCount();
 
     public void setTitles(String title1, String title2){}
+
+    public void setOnClickListener(ItemClick onItemClicked) {
+        mOnItemClick = onItemClicked;
+    }
 
 }
