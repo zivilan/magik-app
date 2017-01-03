@@ -31,8 +31,14 @@ public class OneImageTemplate2Binder extends DataBinder<OneImageTemplate2Binder.
     }
 
     @Override
-    public void bindViewHolder(OneImageTemplate2Binder.ViewHolder holder, int position) {
+    public void bindViewHolder(OneImageTemplate2Binder.ViewHolder holder, final int position) {
         Glide.with(mContext).load(R.drawable.parties).centerCrop().crossFade().into(holder.mImageView);
+        holder.mRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnItemClick.onClick(position);
+            }
+        });
 
     }
 
@@ -48,10 +54,12 @@ public class OneImageTemplate2Binder extends DataBinder<OneImageTemplate2Binder.
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
+        View mRoot;
         ImageView mImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            mRoot = itemView;
             mImageView = (ImageView)itemView.findViewById(R.id.oneimage_image);
         }
     }

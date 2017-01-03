@@ -32,7 +32,7 @@ import com.kaltura.magikapp.magikapp.core.ComponentsInjector;
 import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.core.PluginProvider;
 import com.kaltura.magikapp.magikapp.homepage.Template1Fragment;
-import com.kaltura.magikapp.magikapp.homepage.recycler.Template2Fragment;
+import com.kaltura.magikapp.magikapp.homepage.Template2Fragment;
 import com.kaltura.magikapp.magikapp.menu.MenuMediator;
 import com.kaltura.magikapp.magikapp.toolbar.ToolbarMediator;
 
@@ -291,7 +291,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     Window window = getWindow();
                     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                    window.setStatusBarColor(Color.TRANSPARENT);
+                    window.setStatusBarColor(Color.GRAY);
                 }
                 String url = MagikApplication.get().getConfigurations().getSplashVideo();
                 splashFragment = SplashFragment.newInstance(url != null? url : MagikApplication.get().getConfigurations().getSplashImage(), url != null);

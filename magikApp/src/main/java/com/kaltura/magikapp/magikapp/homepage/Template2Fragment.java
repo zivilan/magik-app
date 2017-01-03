@@ -1,4 +1,4 @@
-package com.kaltura.magikapp.magikapp.homepage.recycler;
+package com.kaltura.magikapp.magikapp.homepage;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -18,8 +18,11 @@ import com.kaltura.magikapp.magikapp.asset_page.AssetPageFragment;
 import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.homepage.binders.DataBinder;
 import com.kaltura.magikapp.magikapp.homepage.binders.FourImagesDataBinderTemplate2;
+import com.kaltura.magikapp.magikapp.homepage.binders.ItemClick;
 import com.kaltura.magikapp.magikapp.homepage.binders.OneImageTemplate2Binder;
 import com.kaltura.magikapp.magikapp.homepage.binders.SimpleGridAdapterTemplate2;
+import com.kaltura.magikapp.magikapp.homepage.recycler.RowSpaceItemDecoration;
+import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
 import com.kaltura.magikapp.magikapp.toolbar.ToolbarMediator;
 
 import java.util.ArrayList;
@@ -84,6 +87,7 @@ public class Template2Fragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 
         OneImageTemplate2Binder oneImageBinder = new OneImageTemplate2Binder(mContext);
+        oneImageBinder.setOnClickListener(mOnItemClicked);
         List<DataBinder> binders = new ArrayList<>();
         binders.add(oneImageBinder);
 
@@ -99,7 +103,7 @@ public class Template2Fragment extends Fragment {
 
     }
 
-    private Template1RecyclerAdapter.ItemClick mOnItemClicked = new Template1RecyclerAdapter.ItemClick() {
+    private ItemClick mOnItemClicked = new ItemClick() {
         @Override
         public void onClick(int position) {
             if (position <= assets.size() - 1) {

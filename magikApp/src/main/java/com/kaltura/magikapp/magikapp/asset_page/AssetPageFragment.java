@@ -105,6 +105,22 @@ public class AssetPageFragment extends Fragment implements PresenterController.O
     }
 
     @Override
+    public void onStop(){
+        super.onStop();
+        if (mPlayer != null){
+            mPlayer.destroy();
+        }
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (mPlayer != null){
+            mPlayer.destroy();
+        }
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mFragmentAid.setToolbarTitle("");
