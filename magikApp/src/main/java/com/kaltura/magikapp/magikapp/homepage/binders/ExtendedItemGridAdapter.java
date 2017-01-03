@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kaltura.magikapp.R;
-import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class ExtendedItemGridAdapter extends RecyclerView.Adapter<ExtendedItemGr
     private Context mContext;
     private List<String> mUrls;
     int[] mDrawableRes;
-    private Template1RecyclerAdapter.ItemClick mOnItemClicked;
+    private ItemClick mOnItemClicked;
 
     public ExtendedItemGridAdapter(Context context, int[] drawableRes) {
         mContext = context;
@@ -88,7 +87,7 @@ public class ExtendedItemGridAdapter extends RecyclerView.Adapter<ExtendedItemGr
         return 4;
     }
 
-    public void setOnClickListener(Template1RecyclerAdapter.ItemClick onItemClicked) {
+    public void setOnClickListener(ItemClick onItemClicked) {
         mOnItemClicked = onItemClicked;
     }
 

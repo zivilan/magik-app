@@ -17,11 +17,6 @@ public class Template1RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
     List<DataBinder> mBinders;
     private Context mContext;
 
-    public interface ItemClick{
-        void onClick(int position);
-    }
-
-
     public Template1RecyclerAdapter(Context context, List<DataBinder> binders) {
         mContext = context;
         mBinders = binders;
