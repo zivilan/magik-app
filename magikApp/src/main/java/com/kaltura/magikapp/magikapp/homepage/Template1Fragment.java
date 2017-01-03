@@ -19,6 +19,7 @@ import com.kaltura.magikapp.magikapp.core.FragmentAid;
 import com.kaltura.magikapp.magikapp.homepage.binders.DataBinder;
 import com.kaltura.magikapp.magikapp.homepage.binders.ExtendedItemGridAdapter;
 import com.kaltura.magikapp.magikapp.homepage.binders.FourImageDataBinder;
+import com.kaltura.magikapp.magikapp.homepage.binders.ItemClick;
 import com.kaltura.magikapp.magikapp.homepage.binders.OneImageDataBinder;
 import com.kaltura.magikapp.magikapp.homepage.binders.SimpleGridAdapterTemplate1;
 import com.kaltura.magikapp.magikapp.homepage.recycler.RowSpaceItemDecoration;
@@ -112,7 +113,7 @@ public class Template1Fragment extends Fragment {
 
     }
 
-    private Template1RecyclerAdapter.ItemClick mOnItemClicked = new Template1RecyclerAdapter.ItemClick() {
+    private ItemClick mOnItemClicked = new ItemClick() {
         @Override
         public void onClick(int position) {
             if (position <= assets.size() - 1) {

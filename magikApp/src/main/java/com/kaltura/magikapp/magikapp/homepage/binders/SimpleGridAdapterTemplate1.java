@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.kaltura.magikapp.R;
-import com.kaltura.magikapp.magikapp.homepage.recycler.Template1RecyclerAdapter;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class SimpleGridAdapterTemplate1 extends RecyclerView.Adapter<SimpleGridA
     private Context mContext;
     private List<String> mUrls;
     int[] mDrawableRes;
-    private Template1RecyclerAdapter.ItemClick mOnItemClicked;
+    private ItemClick mOnItemClicked;
 
     public SimpleGridAdapterTemplate1(Context context, int[] drawableRes){
         mContext = context;
@@ -57,7 +56,7 @@ public class SimpleGridAdapterTemplate1 extends RecyclerView.Adapter<SimpleGridA
         return 4;
     }
 
-    public void setOnClickListener(Template1RecyclerAdapter.ItemClick onItemClicked) {
+    public void setOnClickListener(ItemClick onItemClicked) {
         mOnItemClicked = onItemClicked;
     }
 
