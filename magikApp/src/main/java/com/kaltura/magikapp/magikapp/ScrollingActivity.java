@@ -93,7 +93,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
 
         Drawable icon = menu.getItem(0).getIcon();
         icon.mutate();
-        icon.setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getSecondaryClr()), PorterDuff.Mode.SRC_IN);
+        icon.setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getAccentClr()), PorterDuff.Mode.SRC_IN);
 
         mToolbarMediator.setToolbarMenu(menu);
 
@@ -276,9 +276,9 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
     public void setToolbarHomeButton(@ToolbarMediator.ToolbarHomeButton int button) {
         Drawable[] drawables = new Drawable[2];
         drawables[0] = getResources().getDrawable(R.mipmap.ic_action_navigation_arrow_back);
-        drawables[0].setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getSecondaryClr()), PorterDuff.Mode.SRC_IN);
+        drawables[0].setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getAccentClr()), PorterDuff.Mode.SRC_IN);
         drawables[1] = getResources().getDrawable(R.mipmap.menu_icon_tablet);
-        drawables[1].setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getSecondaryClr()), PorterDuff.Mode.SRC_IN);
+        drawables[1].setColorFilter(Color.parseColor(MagikApplication.get().getConfigurations().getAccentClr()), PorterDuff.Mode.SRC_IN);
 
         mToolbarMediator.setHomeButton(button, drawables);
     }

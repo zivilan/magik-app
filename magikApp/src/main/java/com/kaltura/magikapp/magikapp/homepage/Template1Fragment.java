@@ -115,8 +115,10 @@ public class Template1Fragment extends Fragment {
     private Template1RecyclerAdapter.ItemClick mOnItemClicked = new Template1RecyclerAdapter.ItemClick() {
         @Override
         public void onClick(int position) {
-            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content,
-                    AssetPageFragment.newInstance(assets.get(position))).addToBackStack("item").commit();
+            if (position <= assets.size() - 1) {
+                getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content,
+                        AssetPageFragment.newInstance(assets.get(position))).addToBackStack("item").commit();
+            }
         }
     };
 

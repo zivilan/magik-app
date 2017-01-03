@@ -20,6 +20,7 @@ import com.kaltura.magikapp.magikapp.homepage.binders.DataBinder;
 import com.kaltura.magikapp.magikapp.homepage.binders.FourImagesDataBinderTemplate2;
 import com.kaltura.magikapp.magikapp.homepage.binders.OneImageTemplate2Binder;
 import com.kaltura.magikapp.magikapp.homepage.binders.SimpleGridAdapterTemplate2;
+import com.kaltura.magikapp.magikapp.toolbar.ToolbarMediator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,7 @@ public class Template2Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mFragmentAid.setToolbarTitle("");
         mFragmentAid.changeToolbarLayoutColor(false);
+        mFragmentAid.setToolbarHomeButton(ToolbarMediator.BUTTON_MENU);
 
         mRecyclerView = (RecyclerView) mContainer.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -100,8 +102,10 @@ public class Template2Fragment extends Fragment {
     private Template1RecyclerAdapter.ItemClick mOnItemClicked = new Template1RecyclerAdapter.ItemClick() {
         @Override
         public void onClick(int position) {
-            getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content,
-                    AssetPageFragment.newInstance(assets.get(0))).addToBackStack("item").commit();
+            if (position <= assets.size() - 1) {
+                getFragmentManager().beginTransaction().replace(R.id.activity_scrolling_content,
+                        AssetPageFragment.newInstance(assets.get(position))).addToBackStack("item").commit();
+            }
         }
     };
 

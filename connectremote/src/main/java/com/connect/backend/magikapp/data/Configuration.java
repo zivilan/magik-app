@@ -1,5 +1,6 @@
 package com.connect.backend.magikapp.data;
 
+import android.graphics.Color;
 import android.support.annotation.StringDef;
 
 import com.connect.backend.BaseResult;
@@ -49,6 +50,19 @@ public class Configuration extends BaseResult {
     public String getPrimaryClr(){
         return theme.color.primary;
     }
+
+    public int getPrimary(){
+        return Color.parseColor(getPrimaryClr());
+    }
+
+    public int getSecondary(){
+        return Color.parseColor(getSecondaryClr());
+    }
+
+    public int getAccent(){
+        return Color.parseColor(getAccentClr());
+    }
+
 
     public String getSecondaryClr(){
         return theme.color.secondary;

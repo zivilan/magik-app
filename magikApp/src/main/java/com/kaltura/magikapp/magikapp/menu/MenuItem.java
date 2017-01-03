@@ -21,6 +21,11 @@ public class MenuItem {
         this.title = menuItemConf.title;
     }
 
+    public MenuItem(String name, String title) {
+        this.id = name;
+        this.title = title;
+    }
+
     public String getTitle() {
         return title;
     }
