@@ -291,7 +291,7 @@ public class ScrollingActivity extends AppCompatActivity implements FragmentAid,
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     Window window = getWindow();
                     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                    window.setStatusBarColor(Color.parseColor(MagikApplication.get().getConfigurations().getAccentClr()));
+                    window.setStatusBarColor(Color.GRAY);
                 }
                 String url = MagikApplication.get().getConfigurations().getSplashVideo();
                 splashFragment = SplashFragment.newInstance(url != null? url : MagikApplication.get().getConfigurations().getSplashImage(), url != null);
